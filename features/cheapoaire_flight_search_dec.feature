@@ -49,4 +49,4 @@ Feature: Cheapoair Flight search functionality
 
     And user searches for available for flights
     Then user should see the following error message
-#CHECKING IF THIS  IS ADDED
+#CHECKING IF THIS  IS ADDEDD
