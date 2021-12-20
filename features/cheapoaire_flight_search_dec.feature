@@ -49,3 +49,4 @@ Feature: Cheapoair Flight search functionality
 
     And user searches for available for flights
     Then user should see the following error message
+#added a new line.
