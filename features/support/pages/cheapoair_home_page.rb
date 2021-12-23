@@ -125,4 +125,7 @@ class CheapoairHomePage
   def error_messages_from_city_to_city_dates
     puts error_messages_part2_element.text
   end
+  def selecting_hotels
+    selecting_hotels_tab_element.click
+  end
 end

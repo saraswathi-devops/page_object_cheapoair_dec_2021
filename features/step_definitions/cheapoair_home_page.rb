@@ -62,3 +62,7 @@ end
 Then(/^user should see the following error message$/) do
   on(CheapoairHomePage).error_messages_from_city_to_city_dates
 end
+
+When(/^user selects the Hotels tab Trip$/) do
+  on(CheapoairHomePage).selecting_hotels
+end
