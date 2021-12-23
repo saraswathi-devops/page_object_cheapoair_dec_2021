@@ -1,0 +1,2 @@
+class CheapoairHotelSearch
+end
