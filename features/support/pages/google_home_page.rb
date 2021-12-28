@@ -16,8 +16,8 @@ class GoogleHomePage
     p actual_results
   end
 
-  def search_google_for search_criteria
-    searching_for_element.set search_criteria
+  def search_google_for searching_for
+    searching_for_element.set searching_for
     searching_for_element.send_keys :enter
 
     # @browser.button(value:'Google Search').click

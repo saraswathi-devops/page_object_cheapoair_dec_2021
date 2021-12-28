@@ -2,7 +2,7 @@ Feature: Google Search functionality
 
   Scenario: verify user is able to search for the available laptop details
     Given user is on the google homepage
-    And user searches for the "Dell laptops"
+    And user searches for the Dell laptops
        Then verify user should see the available search details
 
 

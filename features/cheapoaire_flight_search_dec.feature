@@ -15,15 +15,15 @@ Feature: Cheapoair Flight search functionality
     When user selects the Flights tab Trip
     And user search for <dep_airport> city and selects <dep_airport_code> airport for departure
     And user search for <arr_airport> city and selects <arr_airport_code> airport for arrival
-#    And user choose future dates for the arrival <no_of_days> and departure<no_of_days> dates
-    And user selects future dates for departure <no_of_days> days from today
-    And user selects future dates for arrival <no_of_days> days from today
+    And user choose future dates for the departure <no_of_days_dep> and arrival <no_of_days_arr> dates
+#    And user selects future dates for departure <no_of_days> days from today
+#    And user selects future dates for arrival <no_of_days> days from today
     And user searches for available for flights
     Then verify user should see the available flights results
     Examples:
-      | dep_airport | dep_airport_code | arr_airport | arr_airport_code | no_of_days | no_of_days |
-      | Milwaukee   | MKE              | Los Angeles | LAX              | 10         | 15         |
-      | Atlanta     | ATL              | Columbus    | CMH              | 11         | 16         |
+      | dep_airport | dep_airport_code | arr_airport | arr_airport_code | no_of_days_dep | no_of_days_arr |
+      | Milwaukee   | MKE              | Los Angeles | LAX              | 10             | 15             |
+      | Atlanta     | ATL              | Columbus    | CMH              | 11             | 16             |
 
   Scenario: verify user is able to validate the mandatory search fields for flight search
     Given user is on the Cheapoair homepage
@@ -49,5 +49,9 @@ Feature: Cheapoair Flight search functionality
 
     And user searches for available for flights
     Then user should see the following error message
-#added a new line.
-#added a new line.
+
+Scenario: verify user is able to search for the flight details for future dates by reusing the steps
+#  using page. option
+#  When user searches for the flights for future dates
+  Given user is on the Cheapoair homepage
+  When end user searches for the flights for future dates
