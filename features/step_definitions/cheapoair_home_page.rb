@@ -15,15 +15,15 @@ And(/^user search for "([^"]*)" city and selects "([^"]*)" airport for arrival$/
   on(CheapoairHomePage).search_arr_airport arr_airport, arr_airport_code
 end
 
-And(/^user selects future dates for departure (\d+) days from today$/) do |no_of_days|
-  on(CheapoairHomePage).choose_dep_date no_of_days
+And(/^user selects future dates for departure (\d+) days from today$/) do |no_of_dep_days|
+  on(CheapoairHomePage).choose_dep_date no_of_dep_days
   sleep 2
   # on(CheapoairHomePage).choose_dep_date 5
 
 end
 
-And(/^user selects future dates for arrival (\d+) days from today$/) do |no_of_days|
-  on(CheapoairHomePage).choose_arr_date no_of_days
+And(/^user selects future dates for arrival (\d+) days from today$/) do |no_of_arr_days|
+  on(CheapoairHomePage).choose_arr_date no_of_arr_days
   # on(CheapoairHomePage).choose_dep_date 10
 
 end

@@ -2,8 +2,8 @@ class CheapoairHomePage
   include PageObject
   require_relative '../modules/utilities_module'
   include UtilitiesModule
-  page_url "www.cheapoair.com"
-
+  # page_url "www.cheapoair.com"
+  page_url $url
   #Home page available tabs
   link(:selecting_flight_tab, class: 'navigation__link', index: 0)
   link(:selecting_hotels_tab, class: 'navigation__link', index: 1)
