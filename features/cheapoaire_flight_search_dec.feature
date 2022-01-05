@@ -52,6 +52,10 @@ Feature: Cheapoair Flight search functionality
 
 Scenario: verify user is able to search for the flight details for future dates by reusing the steps
 #  using page. option
-#  When user searches for the flights for future dates
+#When user searches for flights for future dates
   Given user is on the Cheapoair homepage
   When end user searches for the flights for future dates
+
+Scenario: verify user is able to search for the flight details for future dates by reusing the steps and using yaml file
+  Given user is on the Cheapoair homepage
+  When end user searches for the different flights for future dates

@@ -11,9 +11,9 @@ And(/^user search the "([^"]*)" city and selects "([^"]*)" airport for departure
   on(CheapoairHomePage).search_dep_airport dep_airport, dep_airport_code
 end
 
-And(/^user search for "([^"]*)" city and selects "([^"]*)" airport for arrival$/) do |arr_airport, arr_airport_code|
-  on(CheapoairHomePage).search_arr_airport arr_airport, arr_airport_code
-end
+# And(/^user search for "([^"]*)" city and selects "([^"]*)" airport for arrival$/) do |arr_airport, arr_airport_code|
+#   on(CheapoairHomePage).search_arr_airport arr_airport, arr_airport_code
+# end
 
 And(/^user selects future dates for departure (\d+) days from today$/) do |no_of_dep_days|
   on(CheapoairHomePage).choose_dep_date no_of_dep_days
@@ -33,13 +33,16 @@ And(/^user searches for available for flights$/) do
 end
 
 Then(/^verify user should see the available flights results$/) do
-  on(CheapoairFlightSearchResultsPage).actual_flight_results
-  # expect(on(CheapoairFlightSearchResultsPage).actual_flight_results).should be < 1
+  p on(CheapoairFlightSearchResultsPage).actual_flight_results
+  expect(on(CheapoairFlightSearchResultsPage).actual_flight_results).to be > 1
   # whether it is true or false no difference in out put?
 end
 
 And(/^user search for (.*) city and selects (.*) airport for departure$/) do |dep_airport, dep_airport_code|
   on(CheapoairHomePage).search_dep_airport dep_airport, dep_airport_code
+end
+And(/^user search for (.*) city and selects (.*) airport for arrival$/) do |arr_airport, arr_airport_code|
+  on(CheapoairHomePage).search_arr_airport arr_airport, arr_airport_code
 end
 
 And(/^user selects nothing in departure field and arrival field$/) do
@@ -76,26 +79,35 @@ end
 #   end
 #  you can do this way or you can do the following way. You can call the steps by using the keyword step.
 
-# When(/^end user searches for the flights for future dates$/) do
-#   step 'user selects the Flights tab Trip'
-#   step 'user search the "Columbus" city and selects "CMH" airport for departure'
-#   step 'user search for "Cleveland" city and selects "CLE" airport for arrival'
-#   #how to use interpolation for parameters?
-#   step 'user selects future dates for departure 10 days from today'
-#   step 'user selects future dates for arrival 15 days from today'
-#   step 'user searches for available for flights'
-#   step 'verify user should see the available flights results'
-# end
 When(/^end user searches for the flights for future dates$/) do
-  steps %Q{
-When user selects the Flights tab Trip
-    And user search the "Columbus" city and selects "CMH" airport for departure
-    And user search for "Cleveland" city and selects "CLE" airport for arrival
-    And user selects future dates for departure 10 days from today
-    And user selects future dates for arrival 15 days from today
-    And user searches for available for flights
-    Then verify user should see the available flights results
+  step 'user selects the Flights tab Trip'
+  step 'user search the "Columbus" city and selects "CMH" airport for departure'
+  step 'user search for "Cleveland" city and selects "CLE" airport for arrival'
+  #how to use interpolation for parameters?
+  step 'user selects future dates for departure 10 days from today'
+  step 'user selects future dates for arrival 15 days from today'
+  step 'user searches for available for flights'
+  step 'verify user should see the available flights results'
+end
+# When(/^end user searches for the flights for future dates$/) do
+#   steps %Q{
+#     When user selects the Flights tab Trip
+#     And user search the "Columbus" city and selects "CMH" airport for departure
+#     And user search for "Cleveland" city and selects "CLE" airport for arrival
+#     And user selects future dates for departure 10 days from today
+#     And user selects future dates for arrival 15 days from today
+#     And user searches for available for flights
+#     Then verify user should see the available flights results
+#
+#       }
+#
+# end
 
-      }
-
+When(/^end user searches for the different flights for future dates$/) do
+  step 'user selects the Flights tab Trip'
+  step 'user search for <dep_airport> city and selects <dep_airport_code> airport for departure'
+  step 'user search for <arr_airport> city and selects <arr_airport_code> airport for arrival'
+  step 'user choose future dates for the departure <no_of_days_dep> and arrival <no_of_days_arr> dates'
+  step 'user searches for available for flights'
+  step 'verify user should see the available flights results'
 end

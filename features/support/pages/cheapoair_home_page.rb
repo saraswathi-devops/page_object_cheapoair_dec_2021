@@ -4,6 +4,7 @@ class CheapoairHomePage
   include UtilitiesModule
   # page_url "www.cheapoair.com"
   page_url $url
+
   #Home page available tabs
   link(:selecting_flight_tab, class: 'navigation__link', index: 0)
   link(:selecting_hotels_tab, class: 'navigation__link', index: 1)
@@ -128,4 +129,11 @@ class CheapoairHomePage
   def selecting_hotels
     selecting_hotels_tab_element.click
   end
+
+  # def search_for_available_flights dep_airport, dep_code
+  #   selecting_flight_tab_element.click
+  #   search_dep_airport "columvus", "cmh"
+  #   search_dep_airport "columvus", "cmh"
+  # end
+
 end
