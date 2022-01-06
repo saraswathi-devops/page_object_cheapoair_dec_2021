@@ -102,12 +102,38 @@ end
 #       }
 #
 # end
+# When(/^end user searches for the different flights for future dates$/) do
+#   step 'user selects the Flights tab Trip'
+#   step 'user search for <dep_airport> city and selects <dep_airport_code> airport for departure'
+#   step 'user search for <arr_airport> city and selects <arr_airport_code> airport for arrival'
+#   step 'user choose future dates for the departure <no_of_days_dep> and arrival <no_of_days_arr> dates'
+#   step 'user searches for available for flights'
+#   step 'verify user should see the available flights results'
+# end
+
+# When(/^end user searches for the different flights for future dates$/) do
+# @data = YAML.load_file 'features/support/test data/cheapoair_flight_test_data.yml'
+#
+# step 'user selects the Flights tab Trip'
+# # step 'user search for @data['dep_airport'] city and selects @data['dep_airport_code'] airport for departure'
+# step 'user search for @data["dep_airport"] city and selects @data["dep_airport_code"] airport for departure'
+# step 'user search for @data["arr_airport"] city and selects @data["arr_airport_code"] airport for arrival'
+# step 'user choose future dates for the departure @data["no_of_days_dep"] and arrival @data["no_of_days_arr"] dates'
+# step 'user searches for available for flights'
+# step 'verify user should see the available flights results'
+#not working even when I am giving in double quotes or single quotes, it says expected :; or end of line??
 
 When(/^end user searches for the different flights for future dates$/) do
-  step 'user selects the Flights tab Trip'
-  step 'user search for <dep_airport> city and selects <dep_airport_code> airport for departure'
-  step 'user search for <arr_airport> city and selects <arr_airport_code> airport for arrival'
-  step 'user choose future dates for the departure <no_of_days_dep> and arrival <no_of_days_arr> dates'
-  step 'user searches for available for flights'
-  step 'verify user should see the available flights results'
+  # @data = YAML.load_file '../test data/cheapoair_flight_test_data.yml'
+  # @data = YAML.load_file 'support/test data/cheapoair_flight_test_data.yml'
+  @data = YAML.load_file 'features/support/test data/cheapoair_flight_test_data.yml'
+
+  on(CheapoairHomePage) do |homepage|
+    homepage.selecting_flight_tab_element.click
+    homepage.search_dep_airport @data['dep_airport'], @data['dep_airport_code']
+    homepage.search_arr_airport @data['arr_airport'], @data['arr_airport_code']
+    homepage.choose_dep_date 5
+    homepage.choose_arr_date 10
+    homepage.search_flights
+  end
 end
