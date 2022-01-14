@@ -79,21 +79,38 @@ end
 #   end
 #  you can do this way or you can do the following way. You can call the steps by using the keyword step.
 
-When(/^end user searches for the flights for future dates$/) do
-  step 'user selects the Flights tab Trip'
-  step 'user search the "Columbus" city and selects "CMH" airport for departure'
-  step 'user search for "Cleveland" city and selects "CLE" airport for arrival'
-  #how to use interpolation for parameters?
-  step 'user selects future dates for departure 10 days from today'
-  step 'user selects future dates for arrival 15 days from today'
-  step 'user searches for available for flights'
-  step 'verify user should see the available flights results'
-end
 # When(/^end user searches for the flights for future dates$/) do
+#   step 'user selects the Flights tab Trip'
+#   step 'user search the "Columbus" city and selects "CMH" airport for departure'
+#   step 'user search for "Cleveland" city and selects "CLE" airport for arrival'
+#   #how to use interpolation for parameters?
+#   step 'user selects future dates for departure 10 days from today'
+#   step 'user selects future dates for arrival 15 days from today'
+#   step 'user searches for available for flights'
+#   step 'verify user should see the available flights results'
+# end
+
+When(/^end user searches for the flights for future dates$/) do
+  steps %Q{
+    When user selects the Flights tab Trip
+    And user search the "Columbus" city and selects "CMH" airport for departure
+    And user search for "Cleveland" city and selects "CLE" airport for arrival
+    And user selects future dates for departure 10 days from today
+    And user selects future dates for arrival 15 days from today
+    And user searches for available for flights
+    Then verify user should see the available flights results
+
+      }
+
+end
+
+# When(/^end user searches for the flights for future dates$/) do
+#   @data = YAML.load_file 'features/support/test data/cheapoair_flight_test_data.yml'
+#
 #   steps %Q{
 #     When user selects the Flights tab Trip
-#     And user search the "Columbus" city and selects "CMH" airport for departure
-#     And user search for "Cleveland" city and selects "CLE" airport for arrival
+#     And user search the @data['dep_airport'] city and selects @data['dep_airport_code'] airport for departure
+#     And user search for @data['arr_airport'] city and selects @data['arr_airport_code'] airport for arrival
 #     And user selects future dates for departure 10 days from today
 #     And user selects future dates for arrival 15 days from today
 #     And user searches for available for flights
@@ -132,8 +149,18 @@ When(/^end user searches for the different flights for future dates$/) do
     homepage.selecting_flight_tab_element.click
     homepage.search_dep_airport @data['dep_airport'], @data['dep_airport_code']
     homepage.search_arr_airport @data['arr_airport'], @data['arr_airport_code']
-    homepage.choose_dep_date 5
-    homepage.choose_arr_date 10
+    homepage.choose_dep_date @data['no_of_days_dep']
+    homepage.choose_arr_date @data['no_of_days_arr']
     homepage.search_flights
   end
+end
+
+Then(/^verify if user gets the following error messages$/) do|table|
+  all_error_messages=on(CheapoairHomePage).get_all_error_messages
+
+end
+
+Then(/^verify the prices$/) do
+  on(CheapoairFlightSearchResultsPage).selecting_cheapflights_tab
+  on(CheapoairFlightSearchResultsPage).get_all_flights_prices
 end

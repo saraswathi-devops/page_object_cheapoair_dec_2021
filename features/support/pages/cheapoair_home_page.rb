@@ -27,8 +27,7 @@ class CheapoairHomePage
   button(:search_flights, id: 'searchNow')
   div(:claender_month, class: 'calendar__single-month active', index: 0)
   ul(:error_messages, class: 'alerts__list')
-  ul(:error_messages_part2,class:'alerts__list',index:0)
-
+  ul(:error_messages_part2, class: 'alerts__list', index: 0)
 
   def search_dep_airport dep_airport, dep_airport_code
     #@browser.link(class: 'suggestion-box__clear icon').click if @browser.link(class: 'suggestion-box__clear icon').present?
@@ -85,7 +84,7 @@ class CheapoairHomePage
     # in page object we cannot make names for dynamic values??
     @browser.a(aria_label: fut_dep_date).click
     # claender_month_element.a(aria_label: fut_dep_date).click
-    sleep 5
+    sleep 2
   end
 
   def choose_arr_date (no_of_days)
@@ -123,17 +122,26 @@ class CheapoairHomePage
     #     # or, you can use the following way
     #     # error_messages.map(&:text)
   end
+
   def error_messages_from_city_to_city_dates
     puts error_messages_part2_element.text
   end
+
+  def get_all_error_messages
+
+  end
+
   def selecting_hotels
     selecting_hotels_tab_element.click
   end
 
-  # def search_for_available_flights dep_airport, dep_code
-  #   selecting_flight_tab_element.click
-  #   search_dep_airport "columvus", "cmh"
-  #   search_dep_airport "columvus", "cmh"
-  # end
+  def search_for_available_flights dep_airport, dep_code, arr_airport, arr_airport_code, no_of_dep_days
+    selecting_flight_tab_element.click
+    search_dep_airport "Columbus", "CMH"
+    search_arr_airport "Cleveland", "CLE"
+    choose_arr_date 10
+
+  end
+
 
 end

@@ -1,1 +1,6 @@
-default: --no-source --color --format pretty
+default: --no-source --color --format pretty --format html --out results.html
+#default: --no-source --color --format pretty --format jason --out results_jason_format.jason
+#default: --no-source --color --format pretty --format html --out results_jason_format.jason
+smoke: --no-source --color --format pretty --tags @smoke
+
+
