@@ -5,7 +5,7 @@ require 'cucumber/rake/task'
 Cucumber::Rake::Task.new(:features) do |t|
   t.profile = 'default'
 end
-Cucumber::Rake::Task.new(:smoke) do |t|
+Cucumber::Rake::Task.new(:rake_cheapoair_smoke) do |t|
   t.profile = 'smoke'
 end
 

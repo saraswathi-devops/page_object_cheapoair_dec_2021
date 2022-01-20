@@ -34,8 +34,11 @@ end
 
 Then(/^verify user should see the available flights results$/) do
   p on(CheapoairFlightSearchResultsPage).actual_flight_results
-  expect(on(CheapoairFlightSearchResultsPage).actual_flight_results).to be > 1
+  num_of_reuslts = on(CheapoairFlightSearchResultsPage).search_results_element.text.to_i
+  # expect(on(CheapoairFlightSearchResultsPage).actual_flight_results).to be > 1
+  expect(num_of_reuslts).to be > 1
   # whether it is true or false no difference in out put?
+  on(CheapoairFlightSearchResultsPage).verify_flights_displayed?
 end
 
 And(/^user search for (.*) city and selects (.*) airport for departure$/) do |dep_airport, dep_airport_code|
@@ -155,12 +158,19 @@ When(/^end user searches for the different flights for future dates$/) do
   end
 end
 
-Then(/^verify if user gets the following error messages$/) do|table|
-  all_error_messages=on(CheapoairHomePage).get_all_error_messages
+Then(/^verify if user gets the following error messages$/) do |table|
+  # all_error_messages=on(CheapoairHomePage).get_all_error_messages
+  table.hashes.each do |each_error|
+    p each_error['error_messages']
+    all_error_messages = on(CheapoairHomePage).get_all_error_messages
+    fail "messages does not match" unless all_error_messages.include? each_error['error_messages']
+
+  end
 
 end
 
-Then(/^verify the prices$/) do
+Then(/^flight search results are displayed with sort order of price$/) do
   on(CheapoairFlightSearchResultsPage).selecting_cheapflights_tab
-  on(CheapoairFlightSearchResultsPage).get_all_flights_prices
+  all_prices=on(CheapoairFlightSearchResultsPage).get_all_flights_prices
+  fail "#{all_prices} are NOT in the sort order" unless all_prices == all_prices.sort
 end

@@ -3,7 +3,7 @@ Feature: Cheapoair Flight search functionality
 Background:
   Given user is on the Cheapoair homepage
 
-  @smoke
+  @smoke @jira_2355
   Scenario:verify user is able to search for the available flights for a future dates
 #    Given user is on the Cheapoair homepage
     When user selects the Flights tab Trip
@@ -73,7 +73,7 @@ Background:
     And user selects future dates for arrival 15 days from today
     And user searches for available for flights
     Then verify if user gets the following error messages
-      | error messages                       |
+      | error_messages                       |
 #      error messages is the header for the error messages
       | Please enter a From city or airport. |
       | Please enter a To city or airport.   |
@@ -81,7 +81,7 @@ Background:
     Scenario: validate the flight search results are displayed with sort ofer of price
 #      Given user is on the Cheapoair homepage
       When end user searches for the flights for future dates
-      Then verify the prices
+      And flight search results are displayed with sort order of price
 
 
 

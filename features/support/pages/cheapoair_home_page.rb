@@ -75,14 +75,15 @@ class CheapoairHomePage
   # end
 
   def choose_dep_date (no_of_days)
-    clicking_on_dep_date_element.click
+    clicking_on_dep_date_element.when_present(30).click
     # @fut_dep_date = cal_date no_of_days
     # can I make it instance variable like this?
     fut_dep_date = cal_date no_of_days
     # dep_date='14 December 2021'
     # selecting_dep_date_element.click
     # in page object we cannot make names for dynamic values??
-    @browser.a(aria_label: fut_dep_date).click
+    # @browser.a(aria_label: fut_dep_date).click
+    @browser.a(aria_label: fut_dep_date).wait_until(&:present?).click
     # claender_month_element.a(aria_label: fut_dep_date).click
     sleep 2
   end
@@ -128,7 +129,11 @@ class CheapoairHomePage
   end
 
   def get_all_error_messages
-
+    all_errors = []
+    error_messages_element.list_item_elements.each do |each_error|
+      all_errors << each_error.text
+    end
+    all_errors
   end
 
   def selecting_hotels
@@ -142,6 +147,5 @@ class CheapoairHomePage
     choose_arr_date 10
 
   end
-
 
 end

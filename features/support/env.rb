@@ -5,6 +5,8 @@ require 'yaml'
 
 require_relative 'modules/utilities_module'
 
+$hide_screenshot = true
+
 if ENV['browser_name'] == nil
   $browser_type = :chrome
 else
