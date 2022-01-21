@@ -1,6 +1,6 @@
-default: --no-source --color --format pretty --format html --out results.html
+#default: --no-source --color --format pretty --format html --out results.html
 #default: --no-source --color --format pretty --format json --out results_jason_format.json
-#default: --no-source --color --format pretty --format html --out results_jason_format.json
+default: --no-source --color --format pretty --format html --out results.json --format html --out results.html
 smoke: --no-source --color --format pretty --tags @smoke
 
 
