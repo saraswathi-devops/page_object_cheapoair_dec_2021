@@ -17,8 +17,7 @@ end
 
 And(/^user selects future dates for departure (\d+) days from today$/) do |no_of_dep_days|
   on(CheapoairHomePage).choose_dep_date no_of_dep_days
-  sleep 2
-  # on(CheapoairHomePage).choose_dep_date 5
+    # on(CheapoairHomePage).choose_dep_date 5
 
 end
 

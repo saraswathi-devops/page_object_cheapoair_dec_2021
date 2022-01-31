@@ -4,3 +4,49 @@ arr_airport: 'Cleveland'
 arr_airport_code: 'CLE'
 no_of_days_dep: 10
 no_of_days_arr: 15
+
+
+#you may have multiple environments. so the test data may be valid in QA and not in patch so, we need to cheange it.
+defaults: &defaults  #give a name to the default values, and you can use it whenever you want to use the default values.
+  :an_account_with_multiple_sales_vps: #  this is test case name/test data/catagory name
+    :account: Joel Jackson and Christine Bloch
+    :primary_sales_vp: ~primary_sales_rep_for_account(1020106)   #Bryan Peters
+
+  :an_account_with_multiple_account_executives:
+    :account: Bob Block
+    :primary_account_executive: Seth Zlotkin
+
+itg1:
+  <<: *defaults #using the default values
+  Scenarios:
+    Account Name displayed in Browser Tab:
+      search_criteria: Richard Childress
+      :account: Richard Childress Racing
+
+itg2:
+  <<: *defaults
+
+  Scenarios:
+    Account Name displayed in Browser Tab:
+      search_criteria: Richard Childress
+      :account: Richard Childress Racing
+
+patch:
+  <<: *defaults
+
+  Scenarios:
+    Account Name displayed in Browser Tab:
+      search_criteria: Richard Childress
+      :account: Richard Childress Racing
+
+qa:
+  <<: *defaults
+  Scenarios:
+    Account Name displayed  in Browser Tab:
+      search_criteria: Richard Childress
+      :account: Richard Childress Racing
+
+
+
+
+

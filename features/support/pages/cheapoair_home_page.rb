@@ -75,7 +75,7 @@ class CheapoairHomePage
   # end
 
   def choose_dep_date (no_of_days)
-    clicking_on_dep_date_element.when_present(30).click
+    clicking_on_dep_date_element.when_present(60).click
     # @fut_dep_date = cal_date no_of_days
     # can I make it instance variable like this?
     fut_dep_date = cal_date no_of_days
@@ -83,7 +83,8 @@ class CheapoairHomePage
     # selecting_dep_date_element.click
     # in page object we cannot make names for dynamic values??
     # @browser.a(aria_label: fut_dep_date).click
-    @browser.a(aria_label: fut_dep_date).wait_until(&:present?).click
+    # @browser.a(aria_label: fut_dep_date).wait_until(&:present?).click
+    @browser.a(aria_label: fut_dep_date).click
     # claender_month_element.a(aria_label: fut_dep_date).click
     sleep 2
   end

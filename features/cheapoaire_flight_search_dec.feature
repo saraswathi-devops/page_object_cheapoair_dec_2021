@@ -9,8 +9,8 @@ Background:
     When user selects the Flights tab Trip
     And user search the "Columbus" city and selects "CMH" airport for departure
     And user search for "Cleveland" city and selects "CLE" airport for arrival
-    And user selects future dates for departure 5 days from today
-    And user selects future dates for arrival 7 days from today
+    And user selects future dates for departure 10 days from today
+    And user selects future dates for arrival 15 days from today
     And user searches for available for flights
     Then verify user should see the available flights results
 
