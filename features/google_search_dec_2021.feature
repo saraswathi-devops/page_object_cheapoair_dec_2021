@@ -1,5 +1,5 @@
 Feature: Google Search functionality
-
+@jira_100
   Scenario: verify user is able to search for the available laptop details
     Given user is on the google homepage
     And user searches for the Dell laptops
